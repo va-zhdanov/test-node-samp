@@ -1,0 +1,33 @@
+import {
+  COLOR,
+  GRAY,
+  BLUE,
+  INDIGO,
+  VIOLET,
+  PURPLE,
+  PINK,
+  RED,
+  ORANGE,
+  YELLOW,
+  LIME,
+  GREEN,
+  TEAL,
+  CYAN,
+} from "./colors";
+
+export {
+  COLOR,
+  GRAY,
+  BLUE,
+  INDIGO,
+  VIOLET,
+  PURPLE,
+  PINK,
+  RED,
+  ORANGE,
+  YELLOW,
+  LIME,
+  GREEN,
+  TEAL,
+  CYAN,
+};
