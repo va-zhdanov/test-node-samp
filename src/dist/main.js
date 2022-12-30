@@ -187,6 +187,13 @@ const TEAM = {
   MAFIA: 2,
   VIP: 3
 };
+let TEXTDRAW = {
+  HELPER: "",
+  POLICE: "",
+  CLUCKERS: "",
+  MAFIA: "",
+  VIP: ""
+};
 sampNodeLib.OnPlayerConnect(({ playerid: id }) => {
   global.teamSel[id] = {
     team: TEAM.NO_TEAM,
@@ -198,6 +205,39 @@ sampNodeLib.OnPlayerSpawn(({ playerid: id }) => {
 });
 sampNodeLib.OnPlayerDeath(({ playerid: id }, killerid, reason) => {
 });
+const teamNameTextdraw = (name) => {
+  sampNodeLib.TextDrawUseBox(name, 0);
+  sampNodeLib.TextDrawLetterSize(name, 1.25, 3);
+  sampNodeLib.TextDrawFont(name, 0);
+  sampNodeLib.TextDrawSetShadow(name, 0);
+  sampNodeLib.TextDrawSetOutline(name, 1);
+  sampNodeLib.TextDrawColor(name, COLOR.WHITE);
+  sampNodeLib.TextDrawBackgroundColor(TEXTDRAW.HELPER, GRAY[900]);
+};
+const setTeamTextdraw = () => {
+  TEXTDRAW.POLICE = sampNodeLib.TextDrawCreate(10, 380, "Police");
+  teamNameTextdraw(TEXTDRAW.POLICE);
+  TEXTDRAW.CLUCKERS = sampNodeLib.TextDrawCreate(10, 380, "Cluckers");
+  teamNameTextdraw(TEXTDRAW.CLUCKERS);
+  TEXTDRAW.MAFIA = sampNodeLib.TextDrawCreate(10, 380, "Mafia");
+  teamNameTextdraw(TEXTDRAW.MAFIA);
+  TEXTDRAW.VIP = sampNodeLib.TextDrawCreate(10, 380, "VIP");
+  teamNameTextdraw(TEXTDRAW.VIP);
+  TEXTDRAW.HELPER = sampNodeLib.TextDrawCreate(
+    10,
+    415,
+    " Press ~b~~k~~GO_LEFT~ ~w~or ~b~~k~~GO_RIGHT~ ~w~to switch cities.~n~ Press ~r~~k~~PED_FIREWEAPON~ ~w~to select."
+  );
+  sampNodeLib.TextDrawUseBox(TEXTDRAW.HELPER, 1);
+  sampNodeLib.TextDrawBoxColor(TEXTDRAW.HELPER, GRAY[500]);
+  sampNodeLib.TextDrawLetterSize(TEXTDRAW.HELPER, 0.3, 1);
+  sampNodeLib.TextDrawTextSize(TEXTDRAW.HELPER, 400, 40);
+  sampNodeLib.TextDrawFont(TEXTDRAW.HELPER, 2);
+  sampNodeLib.TextDrawSetShadow(TEXTDRAW.HELPER, 0);
+  sampNodeLib.TextDrawSetOutline(TEXTDRAW.HELPER, 1);
+  sampNodeLib.TextDrawBackgroundColor(TEXTDRAW.HELPER, GRAY[900]);
+  sampNodeLib.TextDrawColor(TEXTDRAW.HELPER, COLOR.WHITE);
+};
 const setSelectedTeam = (id) => {
   if (global.teamSel[id].team === TEAM.NO_TEAM) {
     global.teamSel[id].team = TEAM.POLICE;
@@ -206,21 +246,41 @@ const setSelectedTeam = (id) => {
     sampNodeLib.SetPlayerInterior(id, 0);
     sampNodeLib.SetPlayerCameraPos(id, 1630.6136, -2286.0298, 110);
     sampNodeLib.SetPlayerCameraLookAt(id, 1887.6034, -1682.1442, 47.6167);
+    sampNodeLib.TextDrawShowForPlayer(id, TEXTDRAW.POLICE);
+    sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.CLUCKERS);
+    sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.MAFIA);
+    sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.VIP);
+    return;
   }
   if (global.teamSel[id].team === TEAM.CLUCKERS) {
     sampNodeLib.SetPlayerInterior(id, 0);
     sampNodeLib.SetPlayerCameraPos(id, -1300.8754, 68.0546, 129.4823);
     sampNodeLib.SetPlayerCameraLookAt(id, -1817.9412, 769.3878, 132.6589);
+    sampNodeLib.TextDrawShowForPlayer(id, TEXTDRAW.CLUCKERS);
+    sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.POLICE);
+    sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.MAFIA);
+    sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.VIP);
+    return;
   }
   if (global.teamSel[id].team === TEAM.MAFIA) {
     sampNodeLib.SetPlayerInterior(id, 0);
     sampNodeLib.SetPlayerCameraPos(id, 1310.6155, 1675.9182, 110.739);
     sampNodeLib.SetPlayerCameraLookAt(id, 2285.2944, 1919.3756, 68.2275);
+    sampNodeLib.TextDrawShowForPlayer(id, TEXTDRAW.MAFIA);
+    sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.POLICE);
+    sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.CLUCKERS);
+    sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.VIP);
+    return;
   }
   if (global.teamSel[id].team === TEAM.VIP) {
     sampNodeLib.SetPlayerInterior(id, 0);
     sampNodeLib.SetPlayerCameraPos(id, -1300.8754, 68.0546, 129.4823);
     sampNodeLib.SetPlayerCameraLookAt(id, -1817.9412, 769.3878, 132.6589);
+    sampNodeLib.TextDrawShowForPlayer(id, TEXTDRAW.VIP);
+    sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.POLICE);
+    sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.CLUCKERS);
+    sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.MAFIA);
+    return;
   }
 };
 const nextTeam = (id) => {
@@ -250,6 +310,11 @@ const handleTeamSelection = (id) => {
     return;
   if (keys[0] === sampNodeLib.KEY.FIRE || keys[0] === sampNodeLib.KEY.SECONDARY_ATTACK) {
     global.teamSel[id].isTeam = true;
+    sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.POLICE);
+    sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.CLUCKERS);
+    sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.MAFIA);
+    sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.VIP);
+    sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.HELPER);
     sampNodeLib.TogglePlayerSpectating(id, 0);
     return;
   }
@@ -263,15 +328,26 @@ const handleTeamSelection = (id) => {
 sampNodeLib.OnPlayerRequestClass(({ playerid: id }, classid) => {
   if (sampNodeLib.IsPlayerNPC(id))
     return;
+  if (global.teamSel[id].isTeam) {
+    return;
+  }
   if (sampNodeLib.GetPlayerState(id) !== sampNodeLib.PLAYER_STATE.SPECTATING) {
     sampNodeLib.TogglePlayerSpectating(id, 1);
+    sampNodeLib.TextDrawShowForPlayer(id, TEXTDRAW.HELPER);
     global.teamSel[id].team = TEAM.NO_TEAM;
   }
 });
 sampNodeLib.OnPlayerUpdate(({ playerid: id }) => {
+  if (!sampNodeLib.IsPlayerConnected(id))
+    return false;
+  if (sampNodeLib.IsPlayerNPC(id))
+    return;
   if (!global.teamSel[id].isTeam && sampNodeLib.GetPlayerState(id) === sampNodeLib.PLAYER_STATE.SPECTATING) {
     handleTeamSelection(id);
   }
+});
+sampNodeLib.OnGameModeInit(() => {
+  setTeamTextdraw();
 });
 
 sampNodeLib.OnPlayerConnect(({ playerid: id }) => {
