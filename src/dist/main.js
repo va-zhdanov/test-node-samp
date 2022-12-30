@@ -188,14 +188,95 @@ const TEAM = {
   VIP: 3
 };
 sampNodeLib.OnPlayerConnect(({ playerid: id }) => {
-  global.teamSel[id].team = TEAM.NO_TEAM;
-  global.teamSel[id].isTeam = false;
-  console.log(Date.now());
-  console.log(global.teamSel);
+  global.teamSel[id] = {
+    team: TEAM.NO_TEAM,
+    isTeam: false,
+    lastTick: Date.now()
+  };
+});
+sampNodeLib.OnPlayerSpawn(({ playerid: id }) => {
+});
+sampNodeLib.OnPlayerDeath(({ playerid: id }, killerid, reason) => {
+});
+const setSelectedTeam = (id) => {
+  if (global.teamSel[id].team === TEAM.NO_TEAM) {
+    global.teamSel[id].team = TEAM.POLICE;
+  }
+  if (global.teamSel[id].team === TEAM.POLICE) {
+    sampNodeLib.SetPlayerInterior(id, 0);
+    sampNodeLib.SetPlayerCameraPos(id, 1630.6136, -2286.0298, 110);
+    sampNodeLib.SetPlayerCameraLookAt(id, 1887.6034, -1682.1442, 47.6167);
+  }
+  if (global.teamSel[id].team === TEAM.CLUCKERS) {
+    sampNodeLib.SetPlayerInterior(id, 0);
+    sampNodeLib.SetPlayerCameraPos(id, -1300.8754, 68.0546, 129.4823);
+    sampNodeLib.SetPlayerCameraLookAt(id, -1817.9412, 769.3878, 132.6589);
+  }
+  if (global.teamSel[id].team === TEAM.MAFIA) {
+    sampNodeLib.SetPlayerInterior(id, 0);
+    sampNodeLib.SetPlayerCameraPos(id, 1310.6155, 1675.9182, 110.739);
+    sampNodeLib.SetPlayerCameraLookAt(id, 2285.2944, 1919.3756, 68.2275);
+  }
+  if (global.teamSel[id].team === TEAM.VIP) {
+    sampNodeLib.SetPlayerInterior(id, 0);
+    sampNodeLib.SetPlayerCameraPos(id, -1300.8754, 68.0546, 129.4823);
+    sampNodeLib.SetPlayerCameraLookAt(id, -1817.9412, 769.3878, 132.6589);
+  }
+};
+const nextTeam = (id) => {
+  global.teamSel[id].team++;
+  if (global.teamSel[id].team > TEAM.VIP) {
+    global.teamSel[id].team = TEAM.POLICE;
+  }
+  sampNodeLib.PlayerPlaySound(id, 1052, 0, 0, 0);
+  global.teamSel[id].lastTick = Date.now();
+  setSelectedTeam(id);
+};
+const prevTeam = (id) => {
+  global.teamSel[id].team--;
+  if (global.teamSel[id].team < TEAM.POLICE) {
+    global.teamSel[id].team = TEAM.VIP;
+  }
+  sampNodeLib.PlayerPlaySound(id, 1053, 0, 0, 0);
+  global.teamSel[id].lastTick = Date.now();
+  setSelectedTeam(id);
+};
+const handleTeamSelection = (id) => {
+  const keys = sampNodeLib.GetPlayerKeys(id);
+  if (global.teamSel[id].team === TEAM.NO_TEAM) {
+    nextTeam(id);
+  }
+  if (Date.now() - global.teamSel[id].lastTick < 500)
+    return;
+  if (keys[0] === sampNodeLib.KEY.FIRE || keys[0] === sampNodeLib.KEY.SECONDARY_ATTACK) {
+    global.teamSel[id].isTeam = true;
+    sampNodeLib.TogglePlayerSpectating(id, 0);
+    return;
+  }
+  if (keys[2] === sampNodeLib.KEY.RIGHT) {
+    nextTeam(id);
+  }
+  if (keys[2] === sampNodeLib.KEY.LEFT) {
+    prevTeam(id);
+  }
+};
+sampNodeLib.OnPlayerRequestClass(({ playerid: id }, classid) => {
+  if (sampNodeLib.IsPlayerNPC(id))
+    return;
+  if (sampNodeLib.GetPlayerState(id) !== sampNodeLib.PLAYER_STATE.SPECTATING) {
+    sampNodeLib.TogglePlayerSpectating(id, 1);
+    global.teamSel[id].team = TEAM.NO_TEAM;
+  }
+});
+sampNodeLib.OnPlayerUpdate(({ playerid: id }) => {
+  if (!global.teamSel[id].isTeam && sampNodeLib.GetPlayerState(id) === sampNodeLib.PLAYER_STATE.SPECTATING) {
+    handleTeamSelection(id);
+  }
 });
 
 sampNodeLib.OnPlayerConnect(({ playerid: id }) => {
   const username = sampNodeLib.GetPlayerName(id, 20);
+  console.log(global.teamSel);
   const joinMessage = `{33ff88}[JOIN] {FFFFFF}${username} (ID: ${id}) has joined the server.`;
   sampNodeLib.SendClientMessageToAll(COLOR.WHITE, joinMessage);
   for (let i = 0; i < 50; i++) {

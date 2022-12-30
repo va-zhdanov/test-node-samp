@@ -5020,3 +5020,352 @@
 
 [20:31:42] [Info] Loading plugin: samp-node
 [20:31:42] [Info] Legacy Network started on port 7777
+[20:44:52] [Info] Loading plugin: streamer
+[20:44:52] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[20:44:52] [Info] Loading plugin: samp-node
+[20:44:53] [Info] Legacy Network started on port 7777
+[20:45:16] [Info] [connection] incoming connection: 127.0.0.1:53450 id: 0
+[20:45:16] [Info] [join] Fr33doM has joined the server (0:127.0.0.1)
+[20:46:07] [Info] Loading plugin: streamer
+[20:46:07] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[20:46:07] [Info] Loading plugin: samp-node
+[20:46:07] [Info] Legacy Network started on port 7777
+[20:46:30] [Info] Loading plugin: streamer
+[20:46:30] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[20:46:30] [Info] Loading plugin: samp-node
+[20:46:30] [Info] Legacy Network started on port 7777
+[20:46:34] [Info] [connection] incoming connection: 127.0.0.1:58769 id: 0
+[20:46:34] [Info] [join] Fr33doM has joined the server (0:127.0.0.1)
+[20:47:28] [Info] Loading plugin: streamer
+[20:47:28] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[20:47:28] [Info] Loading plugin: samp-node
+[20:47:29] [Info] Legacy Network started on port 7777
+[20:47:47] [Info] [connection] incoming connection: 127.0.0.1:58445 id: 0
+[20:47:47] [Info] [join] Fr33doM has joined the server (0:127.0.0.1)
+[20:48:41] [Info] Loading plugin: streamer
+[20:48:41] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[20:48:41] [Info] Loading plugin: samp-node
+[20:48:41] [Info] Legacy Network started on port 7777
+[20:49:04] [Info] [connection] incoming connection: 127.0.0.1:64454 id: 0
+[20:49:04] [Info] [join] Fr33doM has joined the server (0:127.0.0.1)
+[20:51:48] [Info] Loading plugin: streamer
+[20:51:48] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[20:51:48] [Info] Loading plugin: samp-node
+[20:51:48] [Info] Legacy Network started on port 7777
+[20:52:08] [Info] [connection] incoming connection: 127.0.0.1:53269 id: 0
+[20:52:08] [Info] [join] Fr33doM has joined the server (0:127.0.0.1)
+[20:53:17] [Info] Loading plugin: streamer
+[20:53:17] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[20:53:17] [Info] Loading plugin: samp-node
+[20:53:17] [Info] Legacy Network started on port 7777
+[20:53:24] [Info] Loading plugin: streamer
+[20:53:24] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[20:53:24] [Info] Loading plugin: samp-node
+[20:53:24] [Info] Legacy Network started on port 7777
+[20:53:39] [Info] [connection] incoming connection: 127.0.0.1:50013 id: 0
+[20:53:39] [Info] [join] Fr33doM has joined the server (0:127.0.0.1)
+[20:54:19] [Info] Loading plugin: streamer
+[20:54:19] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[20:54:19] [Info] Loading plugin: samp-node
+[20:54:20] [Info] Legacy Network started on port 7777
+[20:54:40] [Info] [connection] incoming connection: 127.0.0.1:56479 id: 0
+[20:54:40] [Info] [join] Fr33doM has joined the server (0:127.0.0.1)
+[20:56:40] [Info] Loading plugin: streamer
+[20:56:40] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[20:56:40] [Info] Loading plugin: samp-node
+[20:56:41] [Info] Legacy Network started on port 7777
+[20:56:51] [Info] Loading plugin: streamer
+[20:56:51] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[20:56:51] [Info] Loading plugin: samp-node
+[20:56:51] [Info] Legacy Network started on port 7777
+[20:56:53] [Info] Loading plugin: streamer
+[20:56:53] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[20:56:53] [Info] Loading plugin: samp-node
+[20:56:53] [Info] Legacy Network started on port 7777
+[20:57:00] [Info] [connection] incoming connection: 127.0.0.1:52135 id: 0
+[20:57:00] [Info] [join] Fr33doM has joined the server (0:127.0.0.1)
+[20:57:56] [Info] Loading plugin: streamer
+[20:57:56] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[20:57:56] [Info] Loading plugin: samp-node
+[20:57:56] [Info] Legacy Network started on port 7777
+[20:58:18] [Info] [connection] incoming connection: 127.0.0.1:52137 id: 0
+[20:58:18] [Info] [join] Fr33doM has joined the server (0:127.0.0.1)
+[20:58:34] [Info] Loading plugin: streamer
+[20:58:34] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[20:58:34] [Info] Loading plugin: samp-node
+[20:58:34] [Info] Legacy Network started on port 7777
+[20:58:53] [Info] Loading plugin: streamer
+[20:58:53] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[20:58:53] [Info] Loading plugin: samp-node
+[20:58:53] [Info] Legacy Network started on port 7777
+[20:58:57] [Info] [connection] incoming connection: 127.0.0.1:55565 id: 0
+[20:58:57] [Info] [join] Fr33doM has joined the server (0:127.0.0.1)
+[20:59:38] [Info] Loading plugin: streamer
+[20:59:38] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[20:59:38] [Info] Loading plugin: samp-node
+[20:59:38] [Info] Legacy Network started on port 7777
+[21:00:45] [Info] Loading plugin: streamer
+[21:00:45] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[21:00:45] [Info] Loading plugin: samp-node
+[21:00:45] [Info] Legacy Network started on port 7777
+[21:00:48] [Info] [connection] incoming connection: 127.0.0.1:61390 id: 0
+[21:00:48] [Info] [join] Fr33doM has joined the server (0:127.0.0.1)
+[21:01:40] [Info] Loading plugin: streamer
+[21:01:40] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[21:01:40] [Info] Loading plugin: samp-node
+[21:01:40] [Info] Legacy Network started on port 7777
+[21:01:53] [Info] [connection] incoming connection: 127.0.0.1:50953 id: 0
+[21:01:53] [Info] [join] Fr33doM has joined the server (0:127.0.0.1)
+[21:03:51] [Info] Loading plugin: streamer
+[21:03:51] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[21:03:51] [Info] Loading plugin: samp-node
+[21:03:51] [Info] Legacy Network started on port 7777
+[21:04:11] [Info] Loading plugin: streamer
+[21:04:11] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[21:04:11] [Info] Loading plugin: samp-node
+[21:04:11] [Info] Legacy Network started on port 7777
+[21:04:15] [Info] Loading plugin: streamer
+[21:04:15] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[21:04:15] [Info] Loading plugin: samp-node
+[21:04:15] [Info] Legacy Network started on port 7777
+[21:04:27] [Info] [connection] incoming connection: 127.0.0.1:62119 id: 0
+[21:04:27] [Info] [join] Fr33doM has joined the server (0:127.0.0.1)
+[21:05:26] [Info] Loading plugin: streamer
+[21:05:26] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[21:05:26] [Info] Loading plugin: samp-node
+[21:05:27] [Info] Legacy Network started on port 7777
+[21:05:31] [Info] Loading plugin: streamer
+[21:05:31] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[21:05:31] [Info] Loading plugin: samp-node
+[21:05:31] [Info] Legacy Network started on port 7777
+[21:05:46] [Info] [connection] incoming connection: 127.0.0.1:64058 id: 0
+[21:05:46] [Info] [join] Fr33doM has joined the server (0:127.0.0.1)
+[21:06:37] [Info] Loading plugin: streamer
+[21:06:37] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[21:06:37] [Info] Loading plugin: samp-node
+[21:06:37] [Info] Legacy Network started on port 7777
+[21:07:02] [Info] [connection] incoming connection: 127.0.0.1:57187 id: 0
+[21:07:02] [Info] [join] Fr33doM has joined the server (0:127.0.0.1)
+[21:08:21] [Info] Loading plugin: streamer
+[21:08:21] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[21:08:21] [Info] Loading plugin: samp-node
+[21:08:22] [Info] Legacy Network started on port 7777
+[21:08:49] [Info] Loading plugin: streamer
+[21:08:49] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[21:08:49] [Info] Loading plugin: samp-node
+[21:08:49] [Info] Legacy Network started on port 7777
+[21:09:00] [Info] Loading plugin: streamer
+[21:09:00] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[21:09:00] [Info] Loading plugin: samp-node
+[21:09:00] [Info] Legacy Network started on port 7777
+[21:09:12] [Info] [connection] incoming connection: 127.0.0.1:62986 id: 0
+[21:09:12] [Info] [join] Fr33doM has joined the server (0:127.0.0.1)
+[21:09:42] [Info] Loading plugin: streamer
+[21:09:42] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[21:09:42] [Info] Loading plugin: samp-node
+[21:09:42] [Info] Legacy Network started on port 7777
+[21:10:01] [Info] [connection] incoming connection: 127.0.0.1:61257 id: 0
+[21:10:01] [Info] [join] Fr33doM has joined the server (0:127.0.0.1)
+[21:10:19] [Info] Loading plugin: streamer
+[21:10:19] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[21:10:19] [Info] Loading plugin: samp-node
+[21:10:19] [Info] Legacy Network started on port 7777
+[21:10:33] [Info] [connection] incoming connection: 127.0.0.1:61652 id: 0
+[21:10:33] [Info] [join] Fr33doM has joined the server (0:127.0.0.1)
+[21:12:16] [Info] Loading plugin: streamer
+[21:12:16] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[21:12:16] [Info] Loading plugin: samp-node
+[21:12:16] [Info] Legacy Network started on port 7777
+[21:18:28] [Info] [connection] incoming connection: 127.0.0.1:57591 id: 0
+[21:18:28] [Info] [join] Fr33doM has joined the server (0:127.0.0.1)
+[21:19:46] [Info] Loading plugin: streamer
+[21:19:46] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[21:19:46] [Info] Loading plugin: samp-node
+[21:19:46] [Info] Legacy Network started on port 7777
+[21:20:24] [Info] Loading plugin: streamer
+[21:20:24] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[21:20:24] [Info] Loading plugin: samp-node
+[21:20:24] [Info] Legacy Network started on port 7777
+[21:20:42] [Info] Loading plugin: streamer
+[21:20:42] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[21:20:42] [Info] Loading plugin: samp-node
+[21:20:42] [Info] Legacy Network started on port 7777
+[21:20:45] [Info] Loading plugin: streamer
+[21:20:45] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[21:20:45] [Info] Loading plugin: samp-node
+[21:20:45] [Info] Legacy Network started on port 7777
+[21:20:53] [Info] Loading plugin: streamer
+[21:20:53] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[21:20:53] [Info] Loading plugin: samp-node
+[21:20:53] [Info] Legacy Network started on port 7777
+[21:24:40] [Info] Loading plugin: streamer
+[21:24:40] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[21:24:40] [Info] Loading plugin: samp-node
+[21:24:40] [Info] Legacy Network started on port 7777
+[21:28:30] [Info] Loading plugin: streamer
+[21:28:30] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[21:28:30] [Info] Loading plugin: samp-node
+[21:28:30] [Info] Legacy Network started on port 7777
+[21:29:59] [Info] Loading plugin: streamer
+[21:29:59] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[21:29:59] [Info] Loading plugin: samp-node
+[21:29:59] [Info] Legacy Network started on port 7777
+[21:33:35] [Info] Loading plugin: streamer
+[21:33:35] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[21:33:35] [Info] Loading plugin: samp-node
+[21:33:35] [Info] Legacy Network started on port 7777
+[21:33:38] [Info] [connection] incoming connection: 127.0.0.1:61594 id: 0
+[21:33:38] [Info] [join] Fr33doM has joined the server (0:127.0.0.1)
+[21:36:22] [Info] Loading plugin: streamer
+[21:36:22] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[21:36:22] [Info] Loading plugin: samp-node
+[21:36:22] [Info] Legacy Network started on port 7777
+[21:36:40] [Info] [connection] incoming connection: 127.0.0.1:62643 id: 0
+[21:36:40] [Info] [join] Fr33doM has joined the server (0:127.0.0.1)
+[21:38:33] [Info] Loading plugin: streamer
+[21:38:33] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[21:38:33] [Info] Loading plugin: samp-node
+[21:38:33] [Info] Legacy Network started on port 7777
+[21:38:57] [Info] [connection] incoming connection: 127.0.0.1:52194 id: 0
+[21:38:57] [Info] [join] Fr33doM has joined the server (0:127.0.0.1)
+[21:39:24] [Info] Loading plugin: streamer
+[21:39:24] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[21:39:24] [Info] Loading plugin: samp-node
+[21:39:24] [Info] Legacy Network started on port 7777
+[21:39:43] [Info] [connection] incoming connection: 127.0.0.1:55418 id: 0
+[21:39:43] [Info] [join] Fr33doM has joined the server (0:127.0.0.1)
+[21:41:58] [Info] Loading plugin: streamer
+[21:41:58] [Info] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[21:41:58] [Info] Loading plugin: samp-node
+[21:41:58] [Info] Legacy Network started on port 7777
+[21:42:15] [Info] [connection] incoming connection: 127.0.0.1:63258 id: 0
+[21:42:15] [Info] [join] Fr33doM has joined the server (0:127.0.0.1)

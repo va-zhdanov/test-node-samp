@@ -54,9 +54,9 @@ public OnPlayerConnect(playerid)
   	SendClientMessage(playerid,COLOR_WHITE,"Welcome to {88AA88}G{FFFFFF}rand {88AA88}L{FFFFFF}arceny");
   	
   	// class selection init vars
-  	gPlayerCitySelection[playerid] = -1;
-	gPlayerHasCitySelected[playerid] = 0;
-	gPlayerLastCitySelectionTick[playerid] = GetTickCount();
+  	gPlayerCitySelection[playerid] = -1; //team
+	gPlayerHasCitySelected[playerid] = 0; // isteam
+	gPlayerLastCitySelectionTick[playerid] = GetTickCount(); // lastick
 
 	//SetPlayerColor(playerid,COLOR_NORMAL_PLAYER);
 
