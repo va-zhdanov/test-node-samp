@@ -6541,3 +6541,4 @@
 *** Streamer Plugin v2.9.5 by Incognito loaded ***
 
 [14:39:49] [Info] Loading plugin: samp-node
+[14:39:49] [Info] Legacy Network started on port 7777
