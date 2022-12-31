@@ -175,11 +175,6 @@ const COLOR = {
   CYAN: CYAN[500]
 };
 
-global.teamSel = [];
-sampNodeLib.OnPlayerDisconnect(({ playerid: id }, reason) => {
-  delete global.teamSel;
-});
-
 const TEAM = {
   NO_TEAM: -1,
   POLICE: 0,
@@ -187,6 +182,71 @@ const TEAM = {
   MAFIA: 2,
   VIP: 3
 };
+const CLASSES = [
+  {
+    team: TEAM.POLICE,
+    skinId: 298,
+    spawnX: 1759.0189,
+    spawnY: -1898.126,
+    spawnZ: 13.5622,
+    zAngle: 266.4503,
+    weapOne: -1,
+    weapOneAmmo: -1,
+    weapTwo: -1,
+    weapTwoAmmo: -1,
+    weapThree: -1,
+    weapThreeAmmo: -1
+  },
+  {
+    team: TEAM.CLUCKERS,
+    skinId: 299,
+    spawnX: 1759.0189,
+    spawnY: -1898.126,
+    spawnZ: 13.5622,
+    zAngle: 266.4503,
+    weapOne: -1,
+    weapOneAmmo: -1,
+    weapTwo: -1,
+    weapTwoAmmo: -1,
+    weapThree: -1,
+    weapThreeAmmo: -1
+  },
+  {
+    team: TEAM.MAFIA,
+    skinId: 300,
+    spawnX: 1759.0189,
+    spawnY: -1898.126,
+    spawnZ: 13.5622,
+    zAngle: 266.4503,
+    weapOne: -1,
+    weapOneAmmo: -1,
+    weapTwo: -1,
+    weapTwoAmmo: -1,
+    weapThree: -1,
+    weapThreeAmmo: -1
+  },
+  {
+    team: TEAM.VIP,
+    skinId: 301,
+    spawnX: 1759.0189,
+    spawnY: -1898.126,
+    spawnZ: 13.5622,
+    zAngle: 266.4503,
+    weapOne: -1,
+    weapOneAmmo: -1,
+    weapTwo: -1,
+    weapTwoAmmo: -1,
+    weapThree: -1,
+    weapThreeAmmo: -1
+  }
+];
+
+global.teamSel = [];
+sampNodeLib.OnPlayerDisconnect(({ playerid: id }, reason) => {
+  delete global.teamSel[id];
+  console.log(global.teamSel[id]);
+});
+
 let TEXTDRAW = {
   HELPER: "",
   POLICE: "",
@@ -200,12 +260,45 @@ sampNodeLib.OnPlayerConnect(({ playerid: id }) => {
     isTeam: false,
     lastTick: Date.now()
   };
+  sampNodeLib.TogglePlayerSpectating(id, 1);
 });
 sampNodeLib.OnPlayerSpawn(({ playerid: id }) => {
+  sampNodeLib.SetPlayerInterior(playerid, 0);
+  sampNodeLib.SetPlayerPos(id, 0, 0, 0);
 });
 sampNodeLib.OnPlayerDeath(({ playerid: id }, killerid, reason) => {
 });
-const teamNameTextdraw = (name) => {
+const handleClassSelection = (id, classid) => {
+  if (global.teamSel[id].team === TEAM.POLICE) {
+    sampNodeLib.SetPlayerInterior(id, 11);
+    sampNodeLib.SetPlayerPos(id, 508.7362, -87.4335, 998.9609);
+    sampNodeLib.SetPlayerFacingAngle(id, 0);
+    sampNodeLib.SetPlayerCameraPos(id, 508.7362, -83.4335, 998.9609);
+    sampNodeLib.SetPlayerCameraLookAt(id, 508.7362, -87.4335, 998.9609);
+  }
+  if (global.teamSel[id].team === TEAM.CLUCKERS) {
+    sampNodeLib.SetPlayerInterior(id, 3);
+    sampNodeLib.SetPlayerPos(id, -2673.8381, 1399.7424, 918.3516);
+    sampNodeLib.SetPlayerFacingAngle(id, 181);
+    sampNodeLib.SetPlayerCameraPos(id, -2673.2776, 1394.3859, 918.3516);
+    sampNodeLib.SetPlayerCameraLookAt(id, -2673.8381, 1399.7424, 918.3516);
+  }
+  if (global.teamSel[id].team === TEAM.MAFIA) {
+    sampNodeLib.SetPlayerInterior(id, 11);
+    sampNodeLib.SetPlayerPos(id, 508.7362, -87.4335, 998.9609);
+    sampNodeLib.SetPlayerFacingAngle(id, 0);
+    sampNodeLib.SetPlayerCameraPos(id, 508.7362, -83.4335, 998.9609);
+    sampNodeLib.SetPlayerCameraLookAt(id, 508.7362, -87.4335, 998.9609);
+  }
+  if (global.teamSel[id].team === TEAM.VIP) {
+    sampNodeLib.SetPlayerInterior(id, 3);
+    sampNodeLib.SetPlayerPos(id, 349.0453, 193.2271, 1014.1797);
+    sampNodeLib.SetPlayerFacingAngle(id, 286.25);
+    sampNodeLib.SetPlayerCameraPos(id, 352.9164, 194.5702, 1014.1875);
+    sampNodeLib.SetPlayerCameraLookAt(id, 349.0453, 193.2271, 1014.1797);
+  }
+};
+const setTeamNameTextdraw = (name) => {
   sampNodeLib.TextDrawUseBox(name, 0);
   sampNodeLib.TextDrawLetterSize(name, 1.25, 3);
   sampNodeLib.TextDrawFont(name, 0);
@@ -214,15 +307,15 @@ const teamNameTextdraw = (name) => {
   sampNodeLib.TextDrawColor(name, COLOR.WHITE);
   sampNodeLib.TextDrawBackgroundColor(TEXTDRAW.HELPER, GRAY[900]);
 };
-const setTeamTextdraw = () => {
+const initTeamSelectTextdraws = () => {
   TEXTDRAW.POLICE = sampNodeLib.TextDrawCreate(10, 380, "Police");
-  teamNameTextdraw(TEXTDRAW.POLICE);
+  setTeamNameTextdraw(TEXTDRAW.POLICE);
   TEXTDRAW.CLUCKERS = sampNodeLib.TextDrawCreate(10, 380, "Cluckers");
-  teamNameTextdraw(TEXTDRAW.CLUCKERS);
+  setTeamNameTextdraw(TEXTDRAW.CLUCKERS);
   TEXTDRAW.MAFIA = sampNodeLib.TextDrawCreate(10, 380, "Mafia");
-  teamNameTextdraw(TEXTDRAW.MAFIA);
+  setTeamNameTextdraw(TEXTDRAW.MAFIA);
   TEXTDRAW.VIP = sampNodeLib.TextDrawCreate(10, 380, "VIP");
-  teamNameTextdraw(TEXTDRAW.VIP);
+  setTeamNameTextdraw(TEXTDRAW.VIP);
   TEXTDRAW.HELPER = sampNodeLib.TextDrawCreate(
     10,
     415,
@@ -310,12 +403,12 @@ const handleTeamSelection = (id) => {
     return;
   if (keys[0] === sampNodeLib.KEY.FIRE || keys[0] === sampNodeLib.KEY.SECONDARY_ATTACK) {
     global.teamSel[id].isTeam = true;
+    sampNodeLib.TogglePlayerSpectating(id, 0);
     sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.POLICE);
     sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.CLUCKERS);
     sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.MAFIA);
     sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.VIP);
     sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.HELPER);
-    sampNodeLib.TogglePlayerSpectating(id, 0);
     return;
   }
   if (keys[2] === sampNodeLib.KEY.RIGHT) {
@@ -329,6 +422,7 @@ sampNodeLib.OnPlayerRequestClass(({ playerid: id }, classid) => {
   if (sampNodeLib.IsPlayerNPC(id))
     return;
   if (global.teamSel[id].isTeam) {
+    handleClassSelection(id);
     return;
   }
   if (sampNodeLib.GetPlayerState(id) !== sampNodeLib.PLAYER_STATE.SPECTATING) {
@@ -339,15 +433,32 @@ sampNodeLib.OnPlayerRequestClass(({ playerid: id }, classid) => {
 });
 sampNodeLib.OnPlayerUpdate(({ playerid: id }) => {
   if (!sampNodeLib.IsPlayerConnected(id))
-    return false;
+    return;
   if (sampNodeLib.IsPlayerNPC(id))
     return;
-  if (!global.teamSel[id].isTeam && sampNodeLib.GetPlayerState(id) === sampNodeLib.PLAYER_STATE.SPECTATING) {
+  const isSpectating = sampNodeLib.GetPlayerState(id) === sampNodeLib.PLAYER_STATE.SPECTATING;
+  if (!global.teamSel[id].isTeam && isSpectating) {
     handleTeamSelection(id);
   }
 });
 sampNodeLib.OnGameModeInit(() => {
-  setTeamTextdraw();
+  initTeamSelectTextdraws();
+  CLASSES.forEach(
+    (item) => sampNodeLib.AddPlayerClassEx(
+      item.team,
+      item.skinId,
+      item.spawnX,
+      item.spawnY,
+      item.spawnZ,
+      item.zAngle,
+      item.weapOne,
+      item.weapOneAmmo,
+      item.weapTwo,
+      item.weapTwoAmmo,
+      item.weapThree,
+      item.weapThreeAmmo
+    )
+  );
 });
 
 sampNodeLib.OnPlayerConnect(({ playerid: id }) => {

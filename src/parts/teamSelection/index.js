@@ -2,6 +2,7 @@
 // Player must select team before selecting respective team's class / skin
 
 import {
+   AddPlayerClassEx,
    GetPlayerKeys,
    GetPlayerState,
    IsPlayerConnected,
@@ -17,7 +18,9 @@ import {
    PLAYER_STATE,
    SetPlayerCameraLookAt,
    SetPlayerCameraPos,
+   SetPlayerFacingAngle,
    SetPlayerInterior,
+   SetPlayerPos,
    TextDrawBackgroundColor,
    TextDrawBoxColor,
    TextDrawColor,
@@ -32,15 +35,7 @@ import {
    TextDrawUseBox,
    TogglePlayerSpectating,
 } from "samp-node-lib";
-import { COLOR, GRAY } from "../../vars";
-
-const TEAM = {
-   NO_TEAM: -1,
-   POLICE: 0,
-   CLUCKERS: 1,
-   MAFIA: 2,
-   VIP: 3,
-};
+import { CLASSES, TEAM, COLOR, GRAY } from "../../vars";
 
 let TEXTDRAW = {
    HELPER: "",
@@ -57,10 +52,13 @@ OnPlayerConnect(({ playerid: id }) => {
       isTeam: false,
       lastTick: Date.now(),
    };
+
+   TogglePlayerSpectating(id, 1);
 });
 
 OnPlayerSpawn(({ playerid: id }) => {
-   // on spawn
+   SetPlayerInterior(playerid, 0);
+   SetPlayerPos(id, 0, 0, 0);
 });
 
 OnPlayerDeath(({ playerid: id }, killerid, reason) => {
@@ -68,9 +66,42 @@ OnPlayerDeath(({ playerid: id }, killerid, reason) => {
 });
 
 // Class selection
+const handleClassSelection = (id, classid) => {
+   if (global.teamSel[id].team === TEAM.POLICE) {
+      SetPlayerInterior(id, 11);
+      SetPlayerPos(id, 508.7362, -87.4335, 998.9609);
+      SetPlayerFacingAngle(id, 0.0);
+      SetPlayerCameraPos(id, 508.7362, -83.4335, 998.9609);
+      SetPlayerCameraLookAt(id, 508.7362, -87.4335, 998.9609);
+   }
+
+   if (global.teamSel[id].team === TEAM.CLUCKERS) {
+      SetPlayerInterior(id, 3);
+      SetPlayerPos(id, -2673.8381, 1399.7424, 918.3516);
+      SetPlayerFacingAngle(id, 181.0);
+      SetPlayerCameraPos(id, -2673.2776, 1394.3859, 918.3516);
+      SetPlayerCameraLookAt(id, -2673.8381, 1399.7424, 918.3516);
+   }
+
+   if (global.teamSel[id].team === TEAM.MAFIA) {
+      SetPlayerInterior(id, 11);
+      SetPlayerPos(id, 508.7362, -87.4335, 998.9609);
+      SetPlayerFacingAngle(id, 0.0);
+      SetPlayerCameraPos(id, 508.7362, -83.4335, 998.9609);
+      SetPlayerCameraLookAt(id, 508.7362, -87.4335, 998.9609);
+   }
+
+   if (global.teamSel[id].team === TEAM.VIP) {
+      SetPlayerInterior(id, 3);
+      SetPlayerPos(id, 349.0453, 193.2271, 1014.1797);
+      SetPlayerFacingAngle(id, 286.25);
+      SetPlayerCameraPos(id, 352.9164, 194.5702, 1014.1875);
+      SetPlayerCameraLookAt(id, 349.0453, 193.2271, 1014.1797);
+   }
+};
 
 // Textdraws
-const teamNameTextdraw = (name) => {
+const setTeamNameTextdraw = (name) => {
    TextDrawUseBox(name, 0);
    TextDrawLetterSize(name, 1.25, 3.0);
    TextDrawFont(name, 0);
@@ -80,18 +111,18 @@ const teamNameTextdraw = (name) => {
    TextDrawBackgroundColor(TEXTDRAW.HELPER, GRAY[900]);
 };
 
-const setTeamTextdraw = () => {
+const initTeamSelectTextdraws = () => {
    TEXTDRAW.POLICE = TextDrawCreate(10.0, 380.0, "Police");
-   teamNameTextdraw(TEXTDRAW.POLICE);
+   setTeamNameTextdraw(TEXTDRAW.POLICE);
 
    TEXTDRAW.CLUCKERS = TextDrawCreate(10.0, 380.0, "Cluckers");
-   teamNameTextdraw(TEXTDRAW.CLUCKERS);
+   setTeamNameTextdraw(TEXTDRAW.CLUCKERS);
 
    TEXTDRAW.MAFIA = TextDrawCreate(10.0, 380.0, "Mafia");
-   teamNameTextdraw(TEXTDRAW.MAFIA);
+   setTeamNameTextdraw(TEXTDRAW.MAFIA);
 
    TEXTDRAW.VIP = TextDrawCreate(10.0, 380.0, "VIP");
-   teamNameTextdraw(TEXTDRAW.VIP);
+   setTeamNameTextdraw(TEXTDRAW.VIP);
 
    TEXTDRAW.HELPER = TextDrawCreate(
       10.0,
@@ -206,14 +237,14 @@ const handleTeamSelection = (id) => {
    if (keys[0] === KEY.FIRE || keys[0] === KEY.SECONDARY_ATTACK) {
       global.teamSel[id].isTeam = true;
 
+      TogglePlayerSpectating(id, 0);
+
       TextDrawHideForPlayer(id, TEXTDRAW.POLICE);
       TextDrawHideForPlayer(id, TEXTDRAW.CLUCKERS);
       TextDrawHideForPlayer(id, TEXTDRAW.MAFIA);
       TextDrawHideForPlayer(id, TEXTDRAW.VIP);
       TextDrawHideForPlayer(id, TEXTDRAW.HELPER);
-
-      TogglePlayerSpectating(id, 0);
-      return; //
+      return;
    }
 
    if (keys[2] === KEY.RIGHT) {
@@ -232,6 +263,7 @@ OnPlayerRequestClass(({ playerid: id }, classid) => {
    // present him with class selection for that team
    if (global.teamSel[id].isTeam) {
       // class selection
+      handleClassSelection(id, classid);
       return;
    }
 
@@ -243,20 +275,36 @@ OnPlayerRequestClass(({ playerid: id }, classid) => {
 });
 
 OnPlayerUpdate(({ playerid: id }) => {
-   if (!IsPlayerConnected(id)) return false;
+   if (!IsPlayerConnected(id)) return;
 
    if (IsPlayerNPC(id)) return;
 
    // changing teams by inputs
-   if (
-      !global.teamSel[id].isTeam &&
-      GetPlayerState(id) === PLAYER_STATE.SPECTATING
-   ) {
+   const isSpectating = GetPlayerState(id) === PLAYER_STATE.SPECTATING;
+   if (!global.teamSel[id].isTeam && isSpectating) {
       handleTeamSelection(id);
    }
 });
 
 OnGameModeInit(() => {
    // initialize textdraws
-   setTeamTextdraw();
+   initTeamSelectTextdraws();
+
+   // add classes
+   CLASSES.forEach((item) =>
+      AddPlayerClassEx(
+         item.team,
+         item.skinId,
+         item.spawnX,
+         item.spawnY,
+         item.spawnZ,
+         item.zAngle,
+         item.weapOne,
+         item.weapOneAmmo,
+         item.weapTwo,
+         item.weapTwoAmmo,
+         item.weapThree,
+         item.weapThreeAmmo
+      )
+   );
 });

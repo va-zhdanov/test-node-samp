@@ -5,5 +5,6 @@ import { OnPlayerDisconnect } from "samp-node-lib";
 global.teamSel = [];
 
 OnPlayerDisconnect(({ playerid: id }, reason) => {
-   delete global.teamSel;
+   delete global.teamSel[id];
+   console.log(global.teamSel[id]);
 });
