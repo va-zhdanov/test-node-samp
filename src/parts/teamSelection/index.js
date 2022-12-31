@@ -153,6 +153,7 @@ const setSelectedTeam = (id) => {
       SetPlayerCameraLookAt(id, 1887.6034, -1682.1442, 47.6167);
 
       TextDrawShowForPlayer(id, TEXTDRAW.POLICE);
+      TextDrawShowForPlayer(id, TEXTDRAW.HELPER);
       TextDrawHideForPlayer(id, TEXTDRAW.CLUCKERS);
       TextDrawHideForPlayer(id, TEXTDRAW.MAFIA);
       TextDrawHideForPlayer(id, TEXTDRAW.VIP);
@@ -166,6 +167,7 @@ const setSelectedTeam = (id) => {
       SetPlayerCameraLookAt(id, -1817.9412, 769.3878, 132.6589);
 
       TextDrawShowForPlayer(id, TEXTDRAW.CLUCKERS);
+      TextDrawShowForPlayer(id, TEXTDRAW.HELPER);
       TextDrawHideForPlayer(id, TEXTDRAW.POLICE);
       TextDrawHideForPlayer(id, TEXTDRAW.MAFIA);
       TextDrawHideForPlayer(id, TEXTDRAW.VIP);
@@ -179,6 +181,7 @@ const setSelectedTeam = (id) => {
       SetPlayerCameraLookAt(id, 2285.2944, 1919.3756, 68.2275);
 
       TextDrawShowForPlayer(id, TEXTDRAW.MAFIA);
+      TextDrawShowForPlayer(id, TEXTDRAW.HELPER);
       TextDrawHideForPlayer(id, TEXTDRAW.POLICE);
       TextDrawHideForPlayer(id, TEXTDRAW.CLUCKERS);
       TextDrawHideForPlayer(id, TEXTDRAW.VIP);
@@ -192,6 +195,7 @@ const setSelectedTeam = (id) => {
       SetPlayerCameraLookAt(id, -1817.9412, 769.3878, 132.6589);
 
       TextDrawShowForPlayer(id, TEXTDRAW.VIP);
+      TextDrawShowForPlayer(id, TEXTDRAW.HELPER);
       TextDrawHideForPlayer(id, TEXTDRAW.POLICE);
       TextDrawHideForPlayer(id, TEXTDRAW.CLUCKERS);
       TextDrawHideForPlayer(id, TEXTDRAW.MAFIA);

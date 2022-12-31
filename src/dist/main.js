@@ -340,6 +340,7 @@ const setSelectedTeam = (id) => {
     sampNodeLib.SetPlayerCameraPos(id, 1630.6136, -2286.0298, 110);
     sampNodeLib.SetPlayerCameraLookAt(id, 1887.6034, -1682.1442, 47.6167);
     sampNodeLib.TextDrawShowForPlayer(id, TEXTDRAW.POLICE);
+    sampNodeLib.TextDrawShowForPlayer(id, TEXTDRAW.HELPER);
     sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.CLUCKERS);
     sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.MAFIA);
     sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.VIP);
@@ -350,6 +351,7 @@ const setSelectedTeam = (id) => {
     sampNodeLib.SetPlayerCameraPos(id, -1300.8754, 68.0546, 129.4823);
     sampNodeLib.SetPlayerCameraLookAt(id, -1817.9412, 769.3878, 132.6589);
     sampNodeLib.TextDrawShowForPlayer(id, TEXTDRAW.CLUCKERS);
+    sampNodeLib.TextDrawShowForPlayer(id, TEXTDRAW.HELPER);
     sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.POLICE);
     sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.MAFIA);
     sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.VIP);
@@ -360,6 +362,7 @@ const setSelectedTeam = (id) => {
     sampNodeLib.SetPlayerCameraPos(id, 1310.6155, 1675.9182, 110.739);
     sampNodeLib.SetPlayerCameraLookAt(id, 2285.2944, 1919.3756, 68.2275);
     sampNodeLib.TextDrawShowForPlayer(id, TEXTDRAW.MAFIA);
+    sampNodeLib.TextDrawShowForPlayer(id, TEXTDRAW.HELPER);
     sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.POLICE);
     sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.CLUCKERS);
     sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.VIP);
@@ -370,6 +373,7 @@ const setSelectedTeam = (id) => {
     sampNodeLib.SetPlayerCameraPos(id, -1300.8754, 68.0546, 129.4823);
     sampNodeLib.SetPlayerCameraLookAt(id, -1817.9412, 769.3878, 132.6589);
     sampNodeLib.TextDrawShowForPlayer(id, TEXTDRAW.VIP);
+    sampNodeLib.TextDrawShowForPlayer(id, TEXTDRAW.HELPER);
     sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.POLICE);
     sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.CLUCKERS);
     sampNodeLib.TextDrawHideForPlayer(id, TEXTDRAW.MAFIA);
