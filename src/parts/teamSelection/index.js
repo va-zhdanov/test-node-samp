@@ -3,12 +3,14 @@
 
 import {
    AddPlayerClassEx,
+   ForceClassSelection,
    GetPlayerKeys,
    GetPlayerState,
    IsPlayerConnected,
    IsPlayerNPC,
    KEY,
    OnGameModeInit,
+   OnPlayerCommandText,
    OnPlayerConnect,
    OnPlayerDeath,
    OnPlayerRequestClass,
@@ -21,6 +23,7 @@ import {
    SetPlayerFacingAngle,
    SetPlayerInterior,
    SetPlayerPos,
+   SetPlayerSkin,
    TextDrawBackgroundColor,
    TextDrawBoxColor,
    TextDrawColor,
@@ -57,12 +60,15 @@ OnPlayerConnect(({ playerid: id }) => {
 });
 
 OnPlayerSpawn(({ playerid: id }) => {
-   SetPlayerInterior(playerid, 0);
+   SetPlayerInterior(id, 0);
+
    SetPlayerPos(id, 0, 0, 0);
+   return 1;
 });
 
 OnPlayerDeath(({ playerid: id }, killerid, reason) => {
    // on death
+   return;
 });
 
 // Class selection
@@ -73,6 +79,18 @@ const handleClassSelection = (id, classid) => {
       SetPlayerFacingAngle(id, 0.0);
       SetPlayerCameraPos(id, 508.7362, -83.4335, 998.9609);
       SetPlayerCameraLookAt(id, 508.7362, -87.4335, 998.9609);
+
+      if (classid === 0) {
+         SetPlayerSkin(id, 302);
+      }
+
+      if (classid === 1) {
+         SetPlayerSkin(id, 309);
+      }
+
+      if (classid === 2) {
+         SetPlayerSkin(id, 285);
+      }
    }
 
    if (global.teamSel[id].team === TEAM.CLUCKERS) {
@@ -81,6 +99,18 @@ const handleClassSelection = (id, classid) => {
       SetPlayerFacingAngle(id, 181.0);
       SetPlayerCameraPos(id, -2673.2776, 1394.3859, 918.3516);
       SetPlayerCameraLookAt(id, -2673.8381, 1399.7424, 918.3516);
+
+      if (classid === 0) {
+         SetPlayerSkin(id, 167);
+      }
+
+      if (classid === 1) {
+         SetPlayerSkin(id, 209);
+      }
+
+      if (classid === 2) {
+         SetPlayerSkin(id, 155);
+      }
    }
 
    if (global.teamSel[id].team === TEAM.MAFIA) {
@@ -89,6 +119,18 @@ const handleClassSelection = (id, classid) => {
       SetPlayerFacingAngle(id, 0.0);
       SetPlayerCameraPos(id, 508.7362, -83.4335, 998.9609);
       SetPlayerCameraLookAt(id, 508.7362, -87.4335, 998.9609);
+
+      if (classid === 0) {
+         SetPlayerSkin(id, 127);
+      }
+
+      if (classid === 1) {
+         SetPlayerSkin(id, 112);
+      }
+
+      if (classid === 2) {
+         SetPlayerSkin(id, 113);
+      }
    }
 
    if (global.teamSel[id].team === TEAM.VIP) {
@@ -97,7 +139,21 @@ const handleClassSelection = (id, classid) => {
       SetPlayerFacingAngle(id, 286.25);
       SetPlayerCameraPos(id, 352.9164, 194.5702, 1014.1875);
       SetPlayerCameraLookAt(id, 349.0453, 193.2271, 1014.1797);
+
+      if (classid === 0) {
+         SetPlayerSkin(id, 137);
+      }
+
+      if (classid === 1) {
+         SetPlayerSkin(id, 144);
+      }
+
+      if (classid === 2) {
+         SetPlayerSkin(id, 212);
+      }
    }
+
+   return 1;
 };
 
 // Textdraws
@@ -261,40 +317,30 @@ const handleTeamSelection = (id) => {
 };
 
 OnPlayerRequestClass(({ playerid: id }, classid) => {
-   if (IsPlayerNPC(id)) return;
+   if (IsPlayerNPC(id)) return 1;
 
    // if player has already selected the team
    // present him with class selection for that team
    if (global.teamSel[id].isTeam) {
       // class selection
       handleClassSelection(id, classid);
-      return;
+      return 1;
+   } else {
+      if (GetPlayerState(id) !== PLAYER_STATE.SPECTATING) {
+         TogglePlayerSpectating(id, 1);
+         TextDrawShowForPlayer(id, TEXTDRAW.HELPER);
+         global.teamSel[id].team = TEAM.NO_TEAM;
+      }
    }
 
-   if (GetPlayerState(id) !== PLAYER_STATE.SPECTATING) {
-      TogglePlayerSpectating(id, 1);
-      TextDrawShowForPlayer(id, TEXTDRAW.HELPER);
-      global.teamSel[id].team = TEAM.NO_TEAM;
-   }
-});
-
-OnPlayerUpdate(({ playerid: id }) => {
-   if (!IsPlayerConnected(id)) return;
-
-   if (IsPlayerNPC(id)) return;
-
-   // changing teams by inputs
-   const isSpectating = GetPlayerState(id) === PLAYER_STATE.SPECTATING;
-   if (!global.teamSel[id].isTeam && isSpectating) {
-      handleTeamSelection(id);
-   }
+   return 0;
 });
 
 OnGameModeInit(() => {
    // initialize textdraws
    initTeamSelectTextdraws();
 
-   // add classes
+   // add 4 dummy classes
    CLASSES.forEach((item) =>
       AddPlayerClassEx(
          item.team,
@@ -311,4 +357,40 @@ OnGameModeInit(() => {
          item.weapThreeAmmo
       )
    );
+});
+
+OnPlayerUpdate(({ playerid: id }) => {
+   if (!IsPlayerConnected(id)) return 0;
+
+   if (IsPlayerNPC(id)) return 1;
+
+   // changing teams by inputs
+   const isSpectating = GetPlayerState(id) === PLAYER_STATE.SPECTATING;
+   if (!global.teamSel[id].isTeam && isSpectating) {
+      handleTeamSelection(id);
+      return 1;
+   }
+});
+
+OnPlayerCommandText(({ playerid: id }, cmdtext) => {
+   // changes skin of the team
+   if (cmdtext === "/cs" || cmdtext === "/changeskin") {
+      ForceClassSelection(id);
+      TogglePlayerSpectating(id, 1);
+      TogglePlayerSpectating(id, 0);
+
+      return 1;
+   }
+
+   // changes team
+   if (cmdtext === "/ct" || cmdtext === "/changeteam") {
+      global.teamSel[id].team = TEAM.NO_TEAM;
+      global.teamSel[id].isTeam = false;
+
+      ForceClassSelection(id);
+      TogglePlayerSpectating(id, 1);
+      TogglePlayerSpectating(id, 0);
+
+      return 1;
+   }
 });

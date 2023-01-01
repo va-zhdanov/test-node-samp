@@ -8,8 +8,7 @@ export const TEAM = {
 
 export const CLASSES = [
    {
-      team: TEAM.POLICE,
-      skinId: 298,
+      skinId: 0,
       spawnX: 1759.0189,
       spawnY: -1898.126,
       spawnZ: 13.5622,
@@ -22,8 +21,7 @@ export const CLASSES = [
       weapThreeAmmo: -1,
    },
    {
-      team: TEAM.CLUCKERS,
-      skinId: 299,
+      skinId: 0,
       spawnX: 1759.0189,
       spawnY: -1898.126,
       spawnZ: 13.5622,
@@ -36,22 +34,7 @@ export const CLASSES = [
       weapThreeAmmo: -1,
    },
    {
-      team: TEAM.MAFIA,
-      skinId: 300,
-      spawnX: 1759.0189,
-      spawnY: -1898.126,
-      spawnZ: 13.5622,
-      zAngle: 266.4503,
-      weapOne: -1,
-      weapOneAmmo: -1,
-      weapTwo: -1,
-      weapTwoAmmo: -1,
-      weapThree: -1,
-      weapThreeAmmo: -1,
-   },
-   {
-      team: TEAM.VIP,
-      skinId: 301,
+      skinId: 0,
       spawnX: 1759.0189,
       spawnY: -1898.126,
       spawnZ: 13.5622,

@@ -184,8 +184,7 @@ const TEAM = {
 };
 const CLASSES = [
   {
-    team: TEAM.POLICE,
-    skinId: 298,
+    skinId: 0,
     spawnX: 1759.0189,
     spawnY: -1898.126,
     spawnZ: 13.5622,
@@ -198,8 +197,7 @@ const CLASSES = [
     weapThreeAmmo: -1
   },
   {
-    team: TEAM.CLUCKERS,
-    skinId: 299,
+    skinId: 0,
     spawnX: 1759.0189,
     spawnY: -1898.126,
     spawnZ: 13.5622,
@@ -212,22 +210,7 @@ const CLASSES = [
     weapThreeAmmo: -1
   },
   {
-    team: TEAM.MAFIA,
-    skinId: 300,
-    spawnX: 1759.0189,
-    spawnY: -1898.126,
-    spawnZ: 13.5622,
-    zAngle: 266.4503,
-    weapOne: -1,
-    weapOneAmmo: -1,
-    weapTwo: -1,
-    weapTwoAmmo: -1,
-    weapThree: -1,
-    weapThreeAmmo: -1
-  },
-  {
-    team: TEAM.VIP,
-    skinId: 301,
+    skinId: 0,
     spawnX: 1759.0189,
     spawnY: -1898.126,
     spawnZ: 13.5622,
@@ -263,10 +246,12 @@ sampNodeLib.OnPlayerConnect(({ playerid: id }) => {
   sampNodeLib.TogglePlayerSpectating(id, 1);
 });
 sampNodeLib.OnPlayerSpawn(({ playerid: id }) => {
-  sampNodeLib.SetPlayerInterior(playerid, 0);
+  sampNodeLib.SetPlayerInterior(id, 0);
   sampNodeLib.SetPlayerPos(id, 0, 0, 0);
+  return 1;
 });
 sampNodeLib.OnPlayerDeath(({ playerid: id }, killerid, reason) => {
+  return;
 });
 const handleClassSelection = (id, classid) => {
   if (global.teamSel[id].team === TEAM.POLICE) {
@@ -275,6 +260,15 @@ const handleClassSelection = (id, classid) => {
     sampNodeLib.SetPlayerFacingAngle(id, 0);
     sampNodeLib.SetPlayerCameraPos(id, 508.7362, -83.4335, 998.9609);
     sampNodeLib.SetPlayerCameraLookAt(id, 508.7362, -87.4335, 998.9609);
+    if (classid === 0) {
+      sampNodeLib.SetPlayerSkin(id, 302);
+    }
+    if (classid === 1) {
+      sampNodeLib.SetPlayerSkin(id, 309);
+    }
+    if (classid === 2) {
+      sampNodeLib.SetPlayerSkin(id, 285);
+    }
   }
   if (global.teamSel[id].team === TEAM.CLUCKERS) {
     sampNodeLib.SetPlayerInterior(id, 3);
@@ -282,6 +276,15 @@ const handleClassSelection = (id, classid) => {
     sampNodeLib.SetPlayerFacingAngle(id, 181);
     sampNodeLib.SetPlayerCameraPos(id, -2673.2776, 1394.3859, 918.3516);
     sampNodeLib.SetPlayerCameraLookAt(id, -2673.8381, 1399.7424, 918.3516);
+    if (classid === 0) {
+      sampNodeLib.SetPlayerSkin(id, 167);
+    }
+    if (classid === 1) {
+      sampNodeLib.SetPlayerSkin(id, 209);
+    }
+    if (classid === 2) {
+      sampNodeLib.SetPlayerSkin(id, 155);
+    }
   }
   if (global.teamSel[id].team === TEAM.MAFIA) {
     sampNodeLib.SetPlayerInterior(id, 11);
@@ -289,6 +292,15 @@ const handleClassSelection = (id, classid) => {
     sampNodeLib.SetPlayerFacingAngle(id, 0);
     sampNodeLib.SetPlayerCameraPos(id, 508.7362, -83.4335, 998.9609);
     sampNodeLib.SetPlayerCameraLookAt(id, 508.7362, -87.4335, 998.9609);
+    if (classid === 0) {
+      sampNodeLib.SetPlayerSkin(id, 127);
+    }
+    if (classid === 1) {
+      sampNodeLib.SetPlayerSkin(id, 112);
+    }
+    if (classid === 2) {
+      sampNodeLib.SetPlayerSkin(id, 113);
+    }
   }
   if (global.teamSel[id].team === TEAM.VIP) {
     sampNodeLib.SetPlayerInterior(id, 3);
@@ -296,7 +308,17 @@ const handleClassSelection = (id, classid) => {
     sampNodeLib.SetPlayerFacingAngle(id, 286.25);
     sampNodeLib.SetPlayerCameraPos(id, 352.9164, 194.5702, 1014.1875);
     sampNodeLib.SetPlayerCameraLookAt(id, 349.0453, 193.2271, 1014.1797);
+    if (classid === 0) {
+      sampNodeLib.SetPlayerSkin(id, 137);
+    }
+    if (classid === 1) {
+      sampNodeLib.SetPlayerSkin(id, 144);
+    }
+    if (classid === 2) {
+      sampNodeLib.SetPlayerSkin(id, 212);
+    }
   }
+  return 1;
 };
 const setTeamNameTextdraw = (name) => {
   sampNodeLib.TextDrawUseBox(name, 0);
@@ -424,26 +446,18 @@ const handleTeamSelection = (id) => {
 };
 sampNodeLib.OnPlayerRequestClass(({ playerid: id }, classid) => {
   if (sampNodeLib.IsPlayerNPC(id))
-    return;
+    return 1;
   if (global.teamSel[id].isTeam) {
-    handleClassSelection(id);
-    return;
+    handleClassSelection(id, classid);
+    return 1;
+  } else {
+    if (sampNodeLib.GetPlayerState(id) !== sampNodeLib.PLAYER_STATE.SPECTATING) {
+      sampNodeLib.TogglePlayerSpectating(id, 1);
+      sampNodeLib.TextDrawShowForPlayer(id, TEXTDRAW.HELPER);
+      global.teamSel[id].team = TEAM.NO_TEAM;
+    }
   }
-  if (sampNodeLib.GetPlayerState(id) !== sampNodeLib.PLAYER_STATE.SPECTATING) {
-    sampNodeLib.TogglePlayerSpectating(id, 1);
-    sampNodeLib.TextDrawShowForPlayer(id, TEXTDRAW.HELPER);
-    global.teamSel[id].team = TEAM.NO_TEAM;
-  }
-});
-sampNodeLib.OnPlayerUpdate(({ playerid: id }) => {
-  if (!sampNodeLib.IsPlayerConnected(id))
-    return;
-  if (sampNodeLib.IsPlayerNPC(id))
-    return;
-  const isSpectating = sampNodeLib.GetPlayerState(id) === sampNodeLib.PLAYER_STATE.SPECTATING;
-  if (!global.teamSel[id].isTeam && isSpectating) {
-    handleTeamSelection(id);
-  }
+  return 0;
 });
 sampNodeLib.OnGameModeInit(() => {
   initTeamSelectTextdraws();
@@ -463,6 +477,33 @@ sampNodeLib.OnGameModeInit(() => {
       item.weapThreeAmmo
     )
   );
+});
+sampNodeLib.OnPlayerUpdate(({ playerid: id }) => {
+  if (!sampNodeLib.IsPlayerConnected(id))
+    return 0;
+  if (sampNodeLib.IsPlayerNPC(id))
+    return 1;
+  const isSpectating = sampNodeLib.GetPlayerState(id) === sampNodeLib.PLAYER_STATE.SPECTATING;
+  if (!global.teamSel[id].isTeam && isSpectating) {
+    handleTeamSelection(id);
+    return 1;
+  }
+});
+sampNodeLib.OnPlayerCommandText(({ playerid: id }, cmdtext) => {
+  if (cmdtext === "/cs" || cmdtext === "/changeskin") {
+    sampNodeLib.ForceClassSelection(id);
+    sampNodeLib.TogglePlayerSpectating(id, 1);
+    sampNodeLib.TogglePlayerSpectating(id, 0);
+    return 1;
+  }
+  if (cmdtext === "/ct" || cmdtext === "/changeteam") {
+    global.teamSel[id].team = TEAM.NO_TEAM;
+    global.teamSel[id].isTeam = false;
+    sampNodeLib.ForceClassSelection(id);
+    sampNodeLib.TogglePlayerSpectating(id, 1);
+    sampNodeLib.TogglePlayerSpectating(id, 0);
+    return 1;
+  }
 });
 
 sampNodeLib.OnPlayerConnect(({ playerid: id }) => {
